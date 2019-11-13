@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-07 20:39:16
- * @LastEditTime: 2019-11-08 21:16:31
+ * @LastEditTime: 2019-11-12 20:32:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \老田二阶段e:\千锋学习\三阶段\xiangmu\xiechengapp\src\components\center.vue
@@ -14,10 +14,10 @@
                 <input type="text" placeholder="国内手机号/用户名/邮箱/卡号">
             </li>
             <li class="twoLi">
-                <input type="password" placeholder="登录密码">
+                <input v-model="msg" type="password" placeholder="登录密码">
                 <span>找回密码</span>
             </li>
-            <button>登录</button>
+            <el-button :plain="true" @click="LoginBtn()">登录</el-button>
             <li class="thereLi">
                 <a href="">手机快捷登录</a>
                 <a href="">境外手机登录</a>
@@ -30,7 +30,22 @@ export default {
     name:"Center",
     data(){
         return {
-            
+           msg:"" 
+        }
+    },
+    methods:{
+        open3() {
+        this.$message({
+          message: '账号或密码不能为空',
+          type: 'warning'
+        });
+      },
+        LoginBtn:function(){
+            if(this.msg == ""){
+                this.open3();
+            }else{
+                this.$router.push({path:'/MyLogin'});
+            }
         }
     }
 }
@@ -52,7 +67,7 @@ h2{
 }
 .oneLi{
     width: 88%;
-    background-color: pink;
+    /* background-color: pink; */
     margin: 0 auto;
     border-bottom: 1px solid rgb(228, 211, 211);
 }

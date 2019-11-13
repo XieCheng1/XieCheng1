@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-08 20:59:55
- * @LastEditTime: 2019-11-11 11:37:34
+ * @LastEditTime: 2019-11-12 17:30:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \老田二阶段e:\千锋学习\三阶段\xiangmu\xiechengapp\src\components\RegisterInput.vue
@@ -16,7 +16,7 @@
             <li class="twoLi">
                 <input type="password" placeholder="密码" v-model="msg">
             </li>
-            <el-button :plain="true" @click="hint()"><router-link to="/MyNoLogin">确认</router-link></el-button>
+            <el-button :plain="true" @click="hint()">确认</el-button>
             <p>登录即代表您同意我们的 <a href=""> 服务协议</a> 和 <a href=""> 隐私政策 </a></p>
         </div>
     </div>
@@ -48,7 +48,7 @@ export default {
           }else if(regName.test(this.msg)){
             //手机号
             flagTel=true;
-	        
+	        this.$router.push({path:'/Login'});
           }else if(!regName.test(this.msg)){
               var flagTel=false;
             this.open4();

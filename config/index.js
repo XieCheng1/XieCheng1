@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-11-07 12:11:35
- * @LastEditTime: 2019-11-12 10:06:34
+ * @LastEditTime: 2019-11-12 17:07:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \老田二阶段e:\千锋学习\三阶段\xiangmu\xiechengapp\config\index.js
@@ -21,7 +21,7 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '192.168.43.170', // can be overwritten by process.env.HOST
+    host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
