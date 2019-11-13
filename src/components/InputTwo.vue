@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-08 20:59:55
- * @LastEditTime: 2019-11-12 17:30:52
+ * @LastEditTime: 2019-11-13 15:01:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \老田二阶段e:\千锋学习\三阶段\xiangmu\xiechengapp\src\components\RegisterInput.vue
@@ -14,7 +14,7 @@
                 <input type="button" value="请输入5-20个以字母开头、可带数字，字符">
             </li>
             <li class="twoLi">
-                <input type="password" placeholder="密码" v-model="msg">
+                <input type="password" placeholder="密码" v-model="mssg">
             </li>
             <el-button :plain="true" @click="hint()">确认</el-button>
             <p>登录即代表您同意我们的 <a href=""> 服务协议</a> 和 <a href=""> 隐私政策 </a></p>
@@ -24,9 +24,10 @@
 <script>
 export default {
     name:"InputTwo",
+    props:['Msg'],
     data(){
         return {
-            msg:""
+            mssg:""
         }
     },
     methods:{
@@ -40,20 +41,25 @@ export default {
         this.$message.error('请输入正确的密码');
       },
       hint:function(){
+        //   console.log(this.Msg);
         var flagTel=false;
         //只能输入5-20个以字母开头、可带数字、“_”、“.”的字串
         var regName=/^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/; 
-          if(this.msg == ""){
+          if(this.mssg == ""){
               this.open3();
-          }else if(regName.test(this.msg)){
+          }else if(regName.test(this.mssg)){
             //手机号
             flagTel=true;
+
 	        this.$router.push({path:'/Login'});
-          }else if(!regName.test(this.msg)){
+          }else if(!regName.test(this.mssg)){
               var flagTel=false;
             this.open4();
           }
       }  
+    },
+    created(){
+        
     }
 }
 </script>

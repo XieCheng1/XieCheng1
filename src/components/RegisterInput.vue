@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-11-08 20:59:55
- * @LastEditTime: 2019-11-12 17:25:58
+ * @LastEditTime: 2019-11-13 14:23:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \老田二阶段e:\千锋学习\三阶段\xiangmu\xiechengapp\src\components\RegisterInput.vue
@@ -48,7 +48,8 @@ export default {
           }else if(regName.test(this.msg)){
             //手机号
             flagTel=true;
-            this.$router.push({path:'/RegisterTwo'});
+            let mg = this.msg;
+            this.$router.push({path:"/RegisterTwo/"+mg});
           }else if(!regName.test(this.msg)){
             var flagTel=false;
             this.open4();

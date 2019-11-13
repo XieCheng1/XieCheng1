@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-11-07 12:14:54
- * @LastEditTime: 2019-11-11 20:22:30
+ * @LastEditTime: 2019-11-13 14:23:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \老田二阶段e:\千锋学习\三阶段\xiangmu\xiechengapp\src\router\index.js
@@ -34,12 +34,13 @@ export default new Router({
     {
       path: '/Register',
       name: 'Register',
-      component: Register
+      component: Register,
     },
     {
-      path: '/RegisterTwo',
+      path: '/RegisterTwo/:mg',
       name: 'RegisterTwo',
-      component: RegisterTwo
+      component: RegisterTwo,
+      props:true
     },
     {
       path: '/MyNoLogin',
