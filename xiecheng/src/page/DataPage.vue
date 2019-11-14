@@ -3,7 +3,7 @@
  * @Author: 是丽丽呀
  * @Date: 2019-11-11 20:01:01
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-12 09:59:36
+ * @LastEditTime: 2019-11-13 16:17:22
  -->
 <!--
  * @Description: 旅拍
@@ -14,11 +14,15 @@
  -->
 <template>
     <div id="box">
-       <DataTop></DataTop>  
-       <PeopleInf></PeopleInf>
+        <div id="mains">
+             <GoBack></GoBack>
+             <DataTop></DataTop>  
+        </div>
+       <PeopleInf id="peopleInf"></PeopleInf>
     </div>
 </template>
 <script>
+import GoBack from '../components/GoBack';
 import DataTop from '../components/DataTop';
 import PeopleInf from '../components/PeopleInf';
 
@@ -30,10 +34,12 @@ export default {
         }
     },
     components:{
-       DataTop,PeopleInf
+       GoBack,DataTop,PeopleInf
     }
 }
 </script>
 <style scoped>
-
+    html.body{
+        height: 100%;
+    }
 </style>

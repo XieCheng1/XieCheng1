@@ -3,12 +3,17 @@
  * @Author: 是丽丽呀
  * @Date: 2019-11-11 14:30:20
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 15:12:10
+ * @LastEditTime: 2019-11-13 23:39:04
  -->
 <template>
     <div id="boxs">
         <ul>
-            <li>
+            <li v-for="(obj,index) in objs" :key="index">
+                <img :src="obj.ph" alt="">  
+                <p>景点</p>
+                <h4>{{obj.name}}</h4>   
+            </li>
+             <!-- <li>
                 <img :src="objs.objsrc" alt="">  
                 <p>景点</p>
                 <h4>{{objs.shiname}}</h4>   
@@ -32,12 +37,7 @@
                 <img :src="objs.objsrc" alt="">  
                 <p>景点</p>
                 <h4>{{objs.shiname}}</h4>   
-            </li>
-             <li>
-                <img :src="objs.objsrc" alt="">  
-                <p>景点</p>
-                <h4>{{objs.shiname}}</h4>   
-            </li>
+            </li> -->
         </ul>
     </div>
     
@@ -58,14 +58,12 @@ export default {
     },
     created(){
         //从后端获取数据
-        fetch('http://localhost:3000/Inplay')
+        fetch('/api/jingqu')
         .then(res=>{
             return res.json();
         })
         .then(data=>{
-            this.objs=data[0];
-
-            console.log(data[0])
+            this.objs=data;
         })
         .catch(err=>{
             console.log(err)
@@ -86,17 +84,19 @@ export default {
     }
     li{
         width: 150px;
+        height: 200px;
         margin-right: 10px;
         flex-shrink: 0;
         position: relative;
     }
     img{
         width: 100%;
+        height: 80%;
     }
     li p{
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 5px;
+        left: 5px;
         width: 40px;
         height: 20px;
         background-color: rgb(250, 240, 240);

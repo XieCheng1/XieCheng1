@@ -3,7 +3,7 @@
  * @Author: 是丽丽呀
  * @Date: 2019-11-11 15:32:08
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 16:44:07
+ * @LastEditTime: 2019-11-14 00:01:57
  -->
 <template>
     <div id="box">
@@ -19,7 +19,7 @@
             <el-button type="primary" icon="el-icon-search" style="background:rgb(252, 248, 248);border:none;color:black">试试搜优质旅拍PK赛</el-button>
         </div>
         <div id="tiGong">
-            <p><span>{{objs.peopleNum}}</span>人为你提供旅拍灵感</p>
+            <p><span>{{objs.num}}</span>人为你提供旅拍灵感</p>
         </div>
     </div>
 </template>
@@ -42,7 +42,7 @@ export default {
     },
       created(){
         //从后端获取数据
-        fetch('http://localhost:3000/Inplay')
+        fetch('/api/lvpai')
         .then(res=>{
             return res.json();
         })

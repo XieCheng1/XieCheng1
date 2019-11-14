@@ -3,7 +3,7 @@
  * @Author: 是丽丽呀
  * @Date: 2019-11-09 09:17:12
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-12 10:47:43
+ * @LastEditTime: 2019-11-13 23:34:02
  -->
 <template>
 <div id="box">
@@ -20,8 +20,6 @@
     <Inplay class="bgv"></Inplay>
     <fatherToChild class="bgv" title="游友点评"></fatherToChild>
     <DianPing class="bgv"></DianPing>
-
-    
     <Footer></Footer> 
 </div>
    
@@ -49,12 +47,17 @@ export default {
     },
     components:{
         GoBack,Footer,Decoration,Banner01,Nav,fatherToChild
-        ,traffic,TuijianNav,Tuijian,Inplay,DianPing
+        ,traffic,TuijianNav,
+        // Tuijian,
+        Inplay,DianPing
     }
 
 }
 </script>
 <style scoped>
+#box{
+    overflow: hidden;
+}
 #decoration{
     position: relative;
     top: -15px;

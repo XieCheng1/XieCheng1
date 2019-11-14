@@ -4,44 +4,49 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-12 10:47:03
+ * @LastEditTime: 2019-11-13 23:58:42
  -->
 <template>
     <div class="box">
        <div id='title'>
-           <p>{{objs.pingfen}}分<span>{{objs.dianping}}条点评</span></p>
-         <div style="margin-top:10px;display:flex;height:40px;">
+           <p>{{objs.rank}}<span>{{objs.remark}}条点评</span></p>
+         <div style="margin-top:10px;display:flex;height:40px;margin-left:20px;">
               <div class="txts">
-                  {{objs.txt}} {{objs.count}}
+                  {{objs.jingxuan}} 
               </div>
               <div class="txts" style="margin-left:30px">
-                  {{objs.txt}} {{objs.count}}
+                  {{objs.jingxuan}} 
               </div>
           </div> 
             
-         <div style="margin-top:10px;display:flex;height:40px;">
+         <div style="margin-top:10px;display:flex;height:40px;margin-left:20px;">
               <div class="txts">
-                  {{objs.txt}} {{objs.count}}
+                  {{objs.jingxuan}} 
               </div>
               <div class="txts" style="margin-left:30px">
-                  {{objs.txt}} {{objs.count}}
+                  {{objs.jingxuan}} 
               </div>
           </div> 
        </div>
-       <div id="touxiang">
-            <div>
-              <img :src="objs.mgsrc" alt="">
-              <span>流浪精灵</span>
-            </div>   
-       </div> 
-         <div id="neirong">
-            <h4>{{objs.pinglun}}</h4>
-            <div>
-                <img :src="objs.imgsrc" alt="">
-                <img :src="objs.imgsrc" alt="">
-                <img :src="objs.imgsrc" alt="">
+       <ul>
+         <li v-for="(index,commen) in commens" :key="index">
+            <div id="touxiang">
+                <div>
+                  <img :src="commen.rename" alt="">
+                  <span>{{commen.uname}}</span>
+                </div>   
+            </div> 
+            <div id="neirong">
+              <h4>{{commen.rname}}</h4>
+              <div>
+                  <img :src="commen.rph1" alt="">
+                  <img :src="commen.rph2" alt="">
+                  <img :src="commen.rph3" alt="">
+              </div>
             </div>
-        </div>
+         </li>
+       </ul>
+       
     </div>  
 </template>
 
@@ -53,6 +58,9 @@ export default {
     return {
        objs:{
          
+       },
+       commens:{
+
        }
     }
   },
@@ -60,7 +68,18 @@ export default {
   
   },
   created(){
-    fetch('http://localhost:3000/Pinglun')
+    fetch('/api/review')
+    .then(res=>{
+        return res.json()
+    })
+    .then(data=>{
+        this.commens=data;
+        console.log(this.commens);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+    fetch('/api/particulars')
     .then(res=>{
         return res.json()
     })

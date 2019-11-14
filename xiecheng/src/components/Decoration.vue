@@ -4,17 +4,17 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 20:08:51
+ * @LastEditTime: 2019-11-13 22:17:52
  -->
 <template>
     <div class="box">
         <div id="top">
             <div id="wenzi">
-                <h2>{{bba.shiname}}</h2>
-                <p v-html="bba.ship"></p>
+                <h2>{{bba.sname}}</h2>
+                <p v-html="bba.trait"></p>
             </div>
             <div id="pingf">
-                <h2>{{bba.shih2}}</h2><span>/5分</span>
+                <h2>{{bba.grad}}</h2><span>/5分</span>
             </div>
         </div> 
         <div id="bottom">
@@ -23,7 +23,7 @@
                     <div id="left_decoration">
                         <p style="color:#b38843">
                             <span class="iconfont" >&#xe605;</span>
-                            {{bba.paimingone}}
+                            {{bba.trait}}
                         </p>
                     </div>
                     <div>
@@ -34,7 +34,7 @@
                     <div id="left_decoration">
                         <p>     
                             <span class="iconfont">&#xe741;</span>
-                            {{bba.paimingTwo}}
+                            {{bba.site}}
                             </p>
                     </div>
                     <div>
@@ -59,7 +59,7 @@
                     <div id="left_decoration">
                         <p id="shiLast">
                             <span class="iconfont" id="four">&#xe62a;</span>
-                            {{bba.paimingFour}}
+                            {{bba.open}}
                         </p>
                     </div>
                     <div id="more">
@@ -71,7 +71,7 @@
         <div id="warns">
             <div>
                  <i class="el-icon-heavy-rain"></i>
-                  <p>{{bba.shiWarns}}</p>
+                  <p>11.10日武夷山马拉松比赛封路通知</p>
                    
             </div>
         </div>
@@ -92,7 +92,7 @@ export default {
      
   },
   created:function(){
-      fetch("http://localhost:3000/aaa")
+      fetch("/api/particulars")
       .then(res=>{
           return res.json();
         //   console.log(res.json())

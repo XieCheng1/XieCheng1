@@ -3,7 +3,7 @@
  * @Author: 是丽丽呀
  * @Date: 2019-11-08 21:22:45
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-12 10:39:41
+ * @LastEditTime: 2019-11-13 12:06:09
  */
 'use strict'
 // Template version: 1.3.1
@@ -17,7 +17,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    
+    proxyTable: {
+      '/api':{
+        target:'http://localhost:3000',
+        changeOrigin:true,
+        pathRewrite:{
+            '^/api':''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -27,7 +36,6 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
     /**
      * Source Maps
      */

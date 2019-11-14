@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 12:02:49
+ * @LastEditTime: 2019-11-13 23:24:58
  -->
 <template>
     <div class="boxs">
@@ -15,13 +15,13 @@
                 <i class="el-icon-arrow-right"></i>
             </div>
         </div>           
-        <el-collapse v-model="activeNames" @change="handleChange">
+        <el-collapse  @change="handleChange">
             <el-collapse-item title="成人票" name="1">
                 <div><h3>官方推荐，出票保证</h3></div>
                     <div style="line-height=35px;">
                         <p style="color:#0098f7;margin-left:-160px">最早可订11月11日票 3天有效期</p>
                         <i class="el-icon-warning-outline" style="color:rgb(241, 208, 20);margin-left:-273px">   有条件退</i><span style="color:#0098f7;margin-left:-292px;">无需取票</span>
-                        <p style="margin-left:-226px">已售1万+| 购买须知></p>   
+                        <p style="margin-left:-226px">已售{{objs.startprice}}+| 购买须知></p>   
                     </div>
             </el-collapse-item>
   <el-collapse-item title="儿童票" name="2">
@@ -47,13 +47,26 @@ export default {
       yangshi:`
         margin-left:10px;
         background:white;
-      `
+      `,
+      objs:{
+        
+      }
     }
   },
   methods:{
       handleChange(val) {
         console.log(val);
       }
+  },
+  created(){
+    fetch('/api/particulars')
+    .then(res=>{
+      return res.json();
+    })
+    .then(data=>{
+        this.objs=data[0];
+        console.log(this.objs)
+    })
   }
 }
 </script>

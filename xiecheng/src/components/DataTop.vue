@@ -4,32 +4,32 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-12 10:25:09
+ * @LastEditTime: 2019-11-13 17:02:45
  -->
 <template>
     <div id="box">
         <div class="box">
-            <h2 style="float:left;margin-bottom:20px">使用日期</h2>
+            <h2 style="float:left;margin-left:10px">使用日期</h2>
             <div id="dataBox">
                 <div id="top">
-                    <div disabled style="background:rgb(231, 228, 228)"> 
-                        <h3>今天</h3>
-                        <h3>11-11</h3>
-                        <h3>不可订</h3>
+                    <div> 
+                        <h4>今天</h4>
+                        <h4>11-11</h4>
+                        <h4>不可订</h4>
                     </div>
-                     <div style="color:blue">
-                        <h3>明天</h3>
-                        <h3>11-12</h3>
-                        <h2 style="color:red"><span>￥</span>350</h2>
+                     <div>
+                        <h4>明天</h4>
+                        <h4>11-12</h4>
+                        <h3 style="color:rgb(238, 105, 105)"><span>￥</span>350</h3>
                     </div>
-                     <div style="color:blue">
-                        <h3>后天</h3>
-                        <h3>11-13</h3>
-                        <h2 style="color:red"><span>￥</span>360</h2>
+                     <div>
+                        <h4>后天</h4>
+                        <h4>11-13</h4>
+                        <h3 style="color:rgb(238, 105, 105)"><span>￥</span>360</h3>
                     </div>
-                     <div style="line-height:40px; color:blue">
-                        <h3>更多<br>
-                         日期></h3>
+                     <div>
+                        <h4>更多<br>
+                         日期></h4>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
         <div id="price">
             <ul>
                 <li>
-                    <div style="float:left;">
+                    <div style="float:left;margin-left:-20px">
                         <h2 style="margin-left:-120px;">成人票</h2>
                         <span style="color:rgb(180, 155, 12);float:left;margin-top:15px;margin-left:20px">
                             <i style="font-size:20px;float:left" class="el-icon-warning"></i>
@@ -56,7 +56,7 @@
                             购买须知
                         </p>
                     </div>
-                    <div id="right" style="margin-top:-116px">
+                    <div id="right">
                         <h3><span style="font-size:23px">￥</span>360</h3>
                         <div id="shiRb">
                             <div id="reduce" @click="reduce1()">-</div>
@@ -66,8 +66,8 @@
                     </div>
                 </li>
                  <li >
-                    <div style="float:left">
-                        <h2 >
+                    <div style="float:left;">
+                        <h2 style="line-height:100px">
                             儿童票
                         </h2>
                     </div>
@@ -82,7 +82,7 @@
                 </li>
                  <li >
                     <div style="float:left">
-                        <h2 >
+                        <h2 style="line-height:100px">
                             学生票
                         </h2>
                     </div>
@@ -110,7 +110,6 @@ export default {
       num1:1,
       num2:0,
       num3:0
-
     }
   },
   methods:{
@@ -176,9 +175,8 @@ export default {
         /* float: left; */
     }
     #top div{
-        /* display: inline-block; */
         width: 80px; 
-        height: 80px;
+        height: 66px;
         margin-top: 30px;
         margin-right: 20px;
         border-radius: 15px;
@@ -191,7 +189,7 @@ export default {
         width: 70px;
         height: 25px;
         line-height: 25px;
-        border:1px solid gold;
+        border:1px solid rgb(207, 179, 21);
         color: goldenrod;
     }
     #zhe p{
@@ -201,26 +199,26 @@ export default {
         width: 95%;
         height: 330px;
         background-color: #fff;
-        margin: 0 auto;
+        margin: 0px auto;
     }
     #price li{
         float: left;
-        height: 100px;
     }
     #right{
         float: right;
-        width: 160px;
-        height: 100px;
+        /* width: 160px;
+        height: 100px; */
     }
     #right h3{
-        color: rgb(204, 8, 8);
-        font-size: 27px;
+        color: rgb(238, 105, 105);
+        font-size: 23px;
         margin-left: 60px;
     }
     #reduce,#add{
         width: 30px;
         height: 30px;
         line-height: 30px;
+        text-align: center;
         border-radius: 50%;
         font-size: 30px;
         border: 1px solid #999;

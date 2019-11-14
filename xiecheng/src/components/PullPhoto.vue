@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 18:00:03
+ * @LastEditTime: 2019-11-14 00:57:57
  -->
 <template>
     <div class="box">
@@ -17,30 +17,12 @@
         </div>
         <div id="zhuyao">
             <ul>
-                <li>
-                    <img :src="objs.pullsrc" alt="">
-                    <p>{{objs.pullpa}}</p>
-                    <span @click="icon" v-show="isShow" class="iconfont">&#xe608;</span>
-                    <span @click="icon" v-show="!isShow" class="iconfont" style="color:rgb(230, 199, 23)">&#xe608;</span>
+                <li v-for="(obj,index) in objs" :key="index">
+                    <img :src="obj.ph" alt="">
+                    <p>{{obj.gname2}}</p>
+                    <span class="iconfont">&#xe608;</span>
                 </li>
-                 <li>
-                    <img :src="objs.pullsrc" alt="">
-                    <p>{{objs.pullpa}}</p>
-                    <span @click="icon" v-show="isShow" class="iconfont">&#xe608;</span>
-                    <span @click="icon" v-show="!isShow" class="iconfont" style="color:rgb(230, 199, 23)">&#xe608;</span>
-                </li>
-                 <li>
-                    <img :src="objs.pullsrc" alt="">
-                    <p>{{objs.pullpa}}</p>
-                    <span @click="icon" v-show="isShow" class="iconfont">&#xe608;</span>
-                    <span @click="icon" v-show="!isShow" class="iconfont" style="color:rgb(230, 199, 23)">&#xe608;</span>
-                </li>
-                 <li>
-                    <img :src="objs.pullsrc" alt="">
-                    <p>{{objs.pullpa}}</p>
-                    <span @click="icon" v-show="isShow" class="iconfont">&#xe608;</span>
-                    <span @click="icon" v-show="!isShow" class="iconfont" style="color:rgb(230, 199, 23)">&#xe608;</span>
-                </li>
+
             </ul>
         </div>
     </div>  
@@ -64,12 +46,12 @@ export default {
       }
   },
   created(){
-    fetch('http://localhost:3000/Inplay')
+    fetch('/api/lvpai')
     .then(res=>{
         return res.json();
     })
     .then(data=>{
-        this.objs=data[0];
+        this.objs=data;
         console.log(data[0])
     })
     .catch(err=>{
@@ -105,6 +87,7 @@ export default {
      }
      li{
          width: 48%;
+         height: 120px;
          margin-bottom: 90px;
      }
      img{
@@ -120,5 +103,11 @@ export default {
      li span{
          float: right;
          margin-right: 20px;
+     }
+     .iconfont{
+         color: #333;
+     }
+     .iconfont:hover{
+         color: goldenrod;
      }
 </style>

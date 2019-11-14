@@ -3,71 +3,52 @@
  * @Author: 是丽丽呀
  * @Date: 2019-11-11 14:30:20
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 17:00:58
+ * @LastEditTime: 2019-11-14 01:07:15
  -->
 <template>
     <div id="boxs">
         <ul>
-            <li>
-                <img :src="objs.objsrc" alt="">  
-                <p>{{objs.ships}}</p>
-                <h4>{{objs.hotname}}</h4>   
-            </li>
-             <li>
-                <img :src="objs.objsrc" alt="">  
-                <p>{{objs.ships}}</p>
-                <h4>{{objs.hotname}}</h4>    
-            </li>
-             <li>
-                <img :src="objs.objsrc" alt="">  
-               <p>{{objs.ships}}</p>
-                <h4>{{objs.hotname}}</h4>   
-            </li>
-             <li>
-                <img :src="objs.objsrc" alt="">  
-                <p>{{objs.ships}}</p>
-                <h4>{{objs.hotname}}</h4>   
-            </li>
-             <li>
-                <img :src="objs.objsrc" alt="">  
-               <p>{{objs.ships}}</p>
-                <h4>{{objs.hotname}}</h4>   
-            </li>
-             <li>
-                <img :src="objs.objsrc" alt="">  
-                <p>{{objs.ships}}</p>
-                <h4>{{objs.hotname}}</h4>    
+            <li v-for="(obj,index) in objs" :key="index">
+                <img :src="obj.ph" alt="">  
+                <p>{{obj.gname1}}</p>
+                <h4>{{obj.gname2}}</h4>   
             </li>
         </ul>
     </div>
     
 </template>
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 export default {
-    name:'Inplay',
+    name:'TaverHot',
     data(){
         return{
-           objs:{
-
-           }
+           objs:[],
+           alljingdian:[],
+           currjingdian:null
         }
-    },
-    methods:{
-        
     },
     created(){
         //从后端获取数据
-        fetch('http://localhost:3000/Inplay')
+        axios('/lvpai')
         .then(res=>{
-            return res.json();
-        })
-        .then(data=>{
-            this.objs=data[0]
+           this.alljingdian=res.data;
+           console.log(res.data)
         })
         .catch(err=>{
             console.log(err)
         })
+    },
+     methods:{
+        // 获得上面的那部分应该存放的数据，此时后端返回的是数字1
+        getNews(data){
+            let arr=[];
+            for(let i in data){
+                if(data[i].ds==1){
+                    arr.push(data[i]);
+                }
+            }
+        }
     }
 }
 </script>
@@ -89,11 +70,12 @@ export default {
         position: relative;
     }
     img{
-        width: 100%;
+        width: 90%;
+        height: 90%;
     }
     li p{
         position: absolute;
-        bottom: 40px;
+        bottom: 48px;
         left: 10px;
         font-size: 20px;
         font-weight: 900;
@@ -102,10 +84,9 @@ export default {
     li h4{
         position: absolute;
         left: 10px;
-        bottom: 10px;
+        bottom: 20px;
         font-size: 18px;
         color: aliceblue;
         background-color: #666;
-    
     }
 </style>

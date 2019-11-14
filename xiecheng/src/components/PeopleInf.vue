@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-12 10:27:15
+ * @LastEditTime: 2019-11-13 16:58:47
  -->
 <template>
     <div id="box">
@@ -23,16 +23,16 @@
                     <i class="el-icon-edit"></i>
                 </div>
                 <div id="title" class="conent">
-                    <h2>联系信息</h2>
+                    <h2 style="backgound:#fff">联系信息</h2>
                     <p>联系手机</p>
                     <input type="text" placeholder="接收确认短信">
                     <i class="el-icon-edit"></i>
                 </div>
           </div> 
           <div class="money">
-              <p style="float:left;margin-left:-70px;color:red;line-height:70px">总额：￥<span style="font-size:24px">0</span></p>
+              <p style="float:left;color:red;line-height:70px">总额：￥<span style="font-size:24px">{{totalMoney}}</span></p>
               <!-- <p style="color:blue">明细</p> -->
-              <div id="go">去支付</div>
+              <div id="go" @click="go">去支付</div>
           </div>
     </div>
    
@@ -44,11 +44,19 @@ export default {
   name: 'PeopleInf',
   data () {
     return {
-      
+      totalMoney:0
     }
   },
   methods:{
-  
+      go(){
+         alert('支付成功，祝您旅行愉快')
+      }
+  },
+  computed:{
+      totalMoney:function(){
+          
+       
+      }
   }
 }
 </script>
@@ -62,7 +70,8 @@ export default {
         margin: 0 auto;
     }
     #title {
-        height: 60px;
+        width: 100%;
+        min-height: 60px;
         line-height: 60px;
     }
     #title h2{
@@ -121,6 +130,10 @@ export default {
          border: none;
          font-size: 16px;
      }
+     .conent {
+         margin-bottom: 73px;
+         background-color: #fff;
+     }
      .conent p{
         float: left;
         margin-top: 43px;
@@ -137,6 +150,10 @@ export default {
          width: 100%;
          height: 70px;
          margin-top: 40px;
+         background-color: #fff;
+         position: fixed;
+         bottom: 0px;
+         z-index: 2;
      } 
      #go{
          width: 200px;
@@ -146,5 +163,8 @@ export default {
          color: #fff;
          background-color: gold;
          float: right;
+     }
+     .conent i{
+         margin-right: -36px;
      }
 </style>

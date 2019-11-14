@@ -4,29 +4,31 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 14:29:37
+ * @LastEditTime: 2019-11-14 00:38:45
  -->
 <template>
     <div id="box">
-        <div>
+        <!-- <span v-show="hasjingdian">还没有人拍照，快快来吧</span> -->
+        <div style="display:none" >{{typename}}</div>
+        <div id="mains" v-for="(obj,index) in objs" :key="index">
             <div id="left">
                 <ul>
                     <li>
-                        <img :src="aab.obj" alt="">
+                        <img :src="obj.fph" alt="">
                     </li>
                 </ul>
             </div>
             <div id="right">
-                <h3>{{aab.shih3ya}}</h3>
-                <p id="one">{{aab.shiPingf}}</p>
+                <p style="font-size:13px">{{obj.fname}}</p>
+                 <p id="one">{{obj.pingfen}}</p>
                 <p id="teo">立即确认</p>
                 <div id="bottom">
-                    <p>月销：{{aab.yueXiao}}份</p>
-                    <span>￥<b>{{aab.money}}</b>起</span>
-                </div>
+                    <p>月销：{{obj.sell}}份</p>
+                   <span>￥<b>{{obj.price}}</b>起</span>
+                </div> 
             </div>
         </div>  
-         <div style="margin-top:10px">
+         <!-- <div style="margin-top:10px">
             <div id="left">
                 <ul>
                     <li>
@@ -43,7 +45,7 @@
                     <span>￥<b>{{aab.money}}</b>起</span>
                 </div>
             </div>
-        </div> 
+        </div>  -->
         <div id="last">
             <p>查看全部</p>
         </div> 
@@ -51,54 +53,77 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'Tuijian',
+  props:['typename'],
   data () {
     return {
-        aaa:{}
+        alljingdian:[],
+        objs:[],
+        currjingdian:null
     }
   },
-  methods:{
-      
+  computed:{
+    hasjingdian(){
+        if(!this.currjingdian){
+            return true;
+        }
+        let arr = Object.keys(this.currjingdian);
+        return arr.length==0;
+        return true;
+     }
   },
   created(){
-      fetch("http://localhost:3000/aaa")
+      //从后端获取数据
+      axios.get('/sss')
       .then(res=>{
-          return res.json();
-      })
-      .then(data=>{
-          let aaa=data[0];
-          this.aab=aaa;
-      })
+          this.alljingdian=res.data;
+          this.objs=this.getBooksByType(this.alljingdian);
+          this.currjingdian=this.alljingdian[this.type];
+        })
       .catch(err=>{
           console.log(err);
       })
-  }
+
+  },
+  beforeUpdate(){
+      this.objs = this.getBooksByType(this.alljingdian);  
+  },
+  methods:{
+     getBooksByType(data){//根据类型获取数据
+         let arr=[];
+         for(let i in data){
+             if(data[i].pname==this.typename){
+                 arr.push(data[i]);
+             }
+         }
+         return arr;
+     }
+   }
+ 
 }
 </script>
 <style scoped>
         #box{
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
+            min-height: 100px;
         }
-
         #left{
             width: 30%;
         }
         #left img{
             width: 100%;
             height: 100%;
-            /* float: left; */
             border-radius: 10px;
         }
         #right{
             width: 65%;
-            margin-top: -130px;
+            margin-top: -100px;
             float: right;
-            /* display: inline-block; */
-            /* flex-grow: 1;
-            margin-left: 5px; */
         }
         #right h3{
             display: -webkit-box;
@@ -109,22 +134,30 @@ export default {
         #right #one{
             color: #0099f7;
             float: left;
+            font-size: 14px;
             text-indent: 7px;
         }
         #right #teo{
             clear: both;
-            width: 85px;
-            height: 30px;
-            line-height: 30px;
+            width: 60px;
+            height: 20px;
+            font-size: 12px;
+            line-height: 20px;
             color: #0098f7;
             border: 1px solid #67bdf3;
         }
         #bottom p{
             float: left;
-            margin-top: 10px;
+            font-size: 11px;
+            /* margin-top: 10px; */
+
+        }
+        #bottom span{
+            margin-top: 7px;
+            display: block;
         }
         #bottom b{
-            font-size: 30px;
+            font-size: 17px;
             color: rgb(223, 53, 53);
         }
         #last{

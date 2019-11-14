@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-11-06 14:35:10
  * @LastEditors: 是丽丽呀
- * @LastEditTime: 2019-11-11 16:00:49
+ * @LastEditTime: 2019-11-13 16:15:31
  -->
 <template>
     <div class="box">
@@ -53,5 +53,8 @@ export default {
 }
 span{
     font-size: 30px;
+}
+#shitu:hover{
+    color: blue;
 }
 </style>
