@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-11 09:16:04
  * @LastEditors: yx
- * @LastEditTime: 2019-11-12 17:25:29
+ * @LastEditTime: 2019-11-13 17:50:24
  * @Description: 行程
  -->
 
@@ -111,6 +111,8 @@ export default {
     font-size: 0.14rem;
     color: #bbb;
     text-indent: 0.18rem;
+    background: #fff;
+    border: 1px solid #ccc;
 }
 .trip input{
     border-radius: 0.04rem;

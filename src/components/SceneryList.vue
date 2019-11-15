@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-08 23:35:12
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 14:18:30
+ * @LastEditTime: 2019-11-15 00:25:07
  * @Description: 新增景点
  -->
 
@@ -12,12 +12,14 @@
         <h3>热门景点</h3>
         <div class="secL">
              <div class="secBox" v-for="(item,index) in scenerys" :key="index">
-                <img :src="item.img">
-                <div class="sceR">
-                    <p>{{item.one1}}</p>
-                    <span>票价：<i>￥{{item.price}}起</i></span>
-                </div>
-                 <div class="jd">景点</div>
+                <router-link :to='"/WuyiShan/"+item.pid'>
+                    <img :src="item.ph1">
+                    <div class="sceR">
+                        <p>{{item.sname}}</p>
+                        <span>票价：<i>￥{{item.startprice}}起</i></span>
+                    </div>
+                    <div class="jd">景点</div>
+                </router-link>
             </div>
         </div>
     </div>
@@ -27,32 +29,19 @@
 import axios from 'axios';
 export default {
   name: 'SceneryList',
-  props:['type'],
+  props:['type','cityname'],
   data() {
       return {
           scenerys:[],
-          obj:{
-                '最新':'getNews',
-            }
       }
   },
   created() {
-      axios.get('/api/citys')
+    //    console.log(this.cityname);
+        // axios.get('/day566/part/hot?cid='+this.cityname)
+        axios.get('/newhot')
       .then(res=>{
-          let newshop = [];
-          this.scenerys = res.data;
-          for(let i in res.data){
-              if(res.data[i].isNew){
-                  newshop.push(res.data[i])
-              }
-              else{
-                  continue;
-              }
-          }
-        //   return newshop;
-          this.scenerys = newshop;
-          console.log( this.scenerys)
-        //   console.log(res.data);
+        // this.scenerys = res.data.New;//连后端
+        this.scenerys = res.data[1].New;//模拟的
       })
       .catch(err=>{
           console.log(err);
@@ -95,6 +84,9 @@ export default {
     height: 1.5rem;
     border-top-left-radius: 0.08rem;
     border-top-right-radius: 0.08rem;
+}
+.secBox a{
+    color: black;
 }
 .sceR{
     padding: 0.05rem;

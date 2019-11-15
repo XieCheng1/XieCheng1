@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-11 14:45:24
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 11:20:52
+ * @LastEditTime: 2019-11-14 18:07:49
  * @Description: 客服
  -->
 
@@ -11,14 +11,14 @@
     <div>
         <MyTop></MyTop>
         <Tips></Tips>
-        <!-- <MyFooter></MyFooter> -->
+        <MyFooter></MyFooter>
     </div>
 </template>
 
 <script>
 import MyTop from '../components/MyTop';
 import Tips from '../components/Tips';
-// import MyFooter from '../components/MyFooter';
+import MyFooter from '../components/MyFooter';
 
 export default {
   name: 'CustService',
@@ -29,7 +29,7 @@ export default {
       }
   },
   components:{
-   MyTop,Tips
+   MyTop,Tips,MyFooter
   }
 }
 

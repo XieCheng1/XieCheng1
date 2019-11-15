@@ -8,16 +8,16 @@
 <template>
   <div id="app">
     <router-view/>
-    <MyFooter></MyFooter>
+    <!-- <MyFooter></MyFooter> -->
   </div>
 </template>
 
 <script>
-import MyFooter from './components/MyFooter';
+// import MyFooter from './components/MyFooter';
 export default {
   name: 'App',
   components:{
-     MyFooter
+    //  MyFooter
   },
 }
 </script>

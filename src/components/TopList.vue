@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-09 10:23:20
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 09:58:29
+ * @LastEditTime: 2019-11-15 00:24:15
  * @Description: 排行榜
  -->
 
@@ -10,18 +10,20 @@
   <div class="topList">
       <div class="hello">
           <span class="el-icon-sunny"><i>9°C</i></span>
-          <h4 id="welcity">{{cityname}}</h4>
+          <h4 id="welcity">您好，欢迎来到{{nowcity.cname}}</h4>
       </div>
       <div class="topCon">
           <p>{{type}}</p>
           <div class="topBox" v-for="(item,index) in tops" :key="index">
-              <img :src="item.img">
-              <span>热门景点</span>
-              <div class="topBoxR">
-                  <p>{{item.one1}}</p>
-                  <span>票价：￥{{item.price}}起</span>
-                  <span>销量：<b>{{item.bycount}}</b></span>
-              </div>
+              <router-link :to='"/WuyiShan/"+item.pid' class="topA">
+                <img :src="item.ph1">
+                <span>排行榜</span>
+                <div class="topBoxR">
+                    <p>{{item.sname}}</p>
+                    <span>票价：￥{{item.startprice}}起</span>
+                    <span>销量：<b>{{item.soid}}</b></span>
+                </div>
+              </router-link>
           </div>
       </div>
   </div>
@@ -36,37 +38,39 @@ export default {
         return {
             msg:"西安",
             tops:[],
-            obj:{
-                '最新':'getNews',
-                '热销排行榜':'getHot'
-            }
+            nowcity:[]
         }
     },
     created() {
-        console.log(this.cityname);
-        fetch('/api/citys')
-        .then(res=>{
-            return res.json();
-        })
-        .then(data=>{
-            let funcName = this.obj[this.type];
-            this.tops = this[funcName](data);
-            // this.tops = this[this.obj](data);
-        })
-        .catch(err=>{
-        console.log(err);
-        })
+        // console.log(this.cityname);
+        // axios.get('/day566/part/hot?cid='+this.cityname)
+        axios.get('/newhot')
+      .then(res=>{
+        // this.tops = res.data.top;//连后端
+        this.tops = res.data[0].top;//模拟的
+      })
+      .catch(err=>{
+          console.log(err);
+      }),
+
+      
+    //    axios.get('day566/city1/all')
+    axios.get('/must')
+      .then(res=>{
+		  	
+		   for(let i in res.data){
+				//   console.log(res.data[i])
+				  if(res.data[i].cid==this.cityname){
+					  this.nowcity = res.data[i]
+				  }
+			  }
+			
+      })
+      .catch(err=>{
+          	console.log(err);
+      })
     },
     methods: {
-        getNews(data){
-          let arr = [];
-          for(let i in data){
-              if(data[i].isNew){
-                  arr.push(data[i]);
-              }
-          }
-          return arr;
-      },
          getHot(data){
           data.sort(function (obj1,obj2) {
               return obj2.bycount-obj1.bycount;
@@ -76,10 +80,10 @@ export default {
       }
     },
     mounted() {
-		if(this.$route.params.name==null){
+		if(this.$route.params.cid==null){
             return document.getElementById("welcity").innerHTML='您好，欢迎来到'+'西安';
         }else{
-            document.getElementById("welcity").innerHTML='您好，欢迎来到'+this.cityname;
+            // document.getElementById("welcity").innerHTML='您好，欢迎来到'+this.cityname;
         }
 
 	},
@@ -135,14 +139,17 @@ i{
     border-radius: 0.1rem;
      position: relative;
 }
-.topBox img{
+.topA{
+    color: black;
+}
+.topA img{
     width: 30%;
     height: 100%;
     float: left;
     border-radius: 0.1rem;
    
 }
-.topBox>span{
+.topA>span{
     background: rgb(245, 87, 87);
     position: absolute;
     top: 0;

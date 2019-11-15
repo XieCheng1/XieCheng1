@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-12 16:57:47
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 14:40:10
+ * @LastEditTime: 2019-11-15 00:08:04
  * @Description: 所有景点
  -->
 
@@ -12,8 +12,20 @@
     <div class="sceList">
         <h3>所有景点</h3>
         <div class="secL">
+             <div class="secBox" v-for="(item,index) in lists" :key="index" @click="lisDes(item.pid)">
+                <router-link :to='"/WuyiShan/"+item.pid'>
+                    <img :src="item.ph1">
+                    <div class="sceR">
+                        <p>{{item.sname}}</p>
+                        <span>票价：<i>￥{{item.startprice}}起</i></span>
+                    </div>
+                    <div class="jd">景点</div>
+                </router-link>
+            </div>
+        </div>
+         <!-- <div class="secL">
              <div class="secBox" v-for="(item,index) in lists" :key="index" @click="lisDes(item.id)">
-                <router-link :to='"/Des/"+item.id'>
+                <router-link :to='"/WuyiShan/"+item.id'>
                     <img :src="item.img">
                     <div class="sceR">
                         <p>{{item.one1}}</p>
@@ -23,26 +35,18 @@
                 </router-link>
             </div>
         </div>
-        <div class="secL">
-             <div class="secBox" v-for="(item,index) in lists" :key="index">
-                <img :src="item.img">
-                <div class="sceR">
-                    <p>{{item.one1}}</p>
-                    <span>票价：<i>￥{{item.price}}起</i></span>
-                </div>
-                 <div class="jd">景点</div>
+         <div class="secL">
+             <div class="secBox" v-for="(item,index) in lists" :key="index" @click="lisDes(item.id)">
+                <router-link :to='"/WuyiShan/"+item.id'>
+                    <img :src="item.img">
+                    <div class="sceR">
+                        <p>{{item.one1}}</p>
+                        <span>票价：<i>￥{{item.price}}起</i></span>
+                    </div>
+                    <div class="jd">景点</div>
+                </router-link>
             </div>
-        </div>
-        <div class="secL">
-             <div class="secBox" v-for="(item,index) in lists" :key="index">
-                <img :src="item.img">
-                <div class="sceR">
-                    <p>{{item.one1}}</p>
-                    <span>票价：<i>￥{{item.price}}起</i></span>
-                </div>
-                 <div class="jd">景点</div>
-            </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -58,22 +62,12 @@ export default {
       }
   },
   created() {
-      axios.get('/api/citys')
+    //   console.log(cid);
+    // axios.get('/day566/part/all')
+      axios.get('/cityshop')
       .then(res=>{
-          let newshop = [];
-        //   this.lists = res.data;
-          for(let i in res.data){
-              if(res.data[i].price){
-                  newshop.push(res.data[i])
-              }
-              else{
-                  continue;
-              }
-          }
-        //   return newshop;
-          this.lists = newshop;
-          console.log( this.scenerys)
         //   console.log(res.data);
+         this.lists = res.data;
       })
       .catch(err=>{
           console.log(err);

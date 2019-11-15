@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-11 20:11:05
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 09:57:34
+ * @LastEditTime: 2019-11-15 00:15:46
  * @Description: 城市
  -->
 
@@ -11,7 +11,7 @@
        <div class="now">
            <p>当前/历史</p>
            <ul>
-               <li><span class="el-icon-location"></span> 西安</li>
+               <li><span class="el-icon-location"></span>西安</li>
                <li>渭南</li>
                <li>北京</li>
            </ul>
@@ -19,16 +19,16 @@
        <div class="hot">
             <p>热门城市</p>
            <ul>
-               <li v-for="(item,index) in citys" :key="index"><router-link :to='"/Index/"+item.name'>{{item.name}}</router-link></li>
+               <li v-for="(item,index) in citys" :key="index"><router-link :to='"/Index/"+item.cid'>{{item.cname}}</router-link></li>
            </ul>
        </div>
        <div class="quarter">
            <p>当季必玩</p>
            <ul>
                <li  v-for="(item,index) in quarterCity" :key="index">
-                    <router-link :to='"/Index/"+item.name'>
-                        <img :src="item.img1">
-                        <span>{{item.name}}</span>
+                    <router-link :to='"/Index/"+item.cname'>
+                        <img :src="item.ph">
+                        <span>{{item.cname}}</span>
                     </router-link>
                </li>
            </ul>
@@ -49,20 +49,20 @@ export default {
     }
   },
   created() {
-      axios.get('/api/citys')
+    //   axios.get('/day566/city1/all')
+    axios.get('/must')
       .then(res=>{
-        //   console.log(this.id)
-          this.citys = res.data;
+        //   console.log(res.data);
           for(let i in res.data){
-            //   let idarr = [];
-            //   this.cityid.push(res.data[i].id);
-            //   console.log(res.data[i].id);
+              if(res.data[i].ph==null){
+                  this.citys.push(res.data[i])
+              }else{
+                  this.quarterCity.push(res.data[i])
+              }
           }
-        //   console.log(this.cityid);
-          let arr = [];
-          arr = res.data.slice(0,6);
-          this.quarterCity = arr;
-          
+          console.log(this.citys)
+        // this.citys = res.data.hot;
+        // this.quarterCity = res.data.must;  
       })
       .catch(err=>{
           console.log(err);

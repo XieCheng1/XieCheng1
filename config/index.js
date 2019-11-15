@@ -2,7 +2,7 @@
  * @Author: yx
  * @Date: 2019-11-12 15:19:00
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 09:55:32
+ * @LastEditTime: 2019-11-15 00:04:02
  * @Description: 
  */
 'use strict'
@@ -19,6 +19,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
+        // target:'http://10.35.161.138:8080',
         target:'http://localhost:3000',
         changeOringe:true,
         pathRewrite:{

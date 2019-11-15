@@ -2,13 +2,13 @@
  * @Author: yx
  * @Date: 2019-11-08 20:00:17
  * @LastEditors: yx
- * @LastEditTime: 2019-11-13 14:36:13
+ * @LastEditTime: 2019-11-15 00:05:34
  * @Description: 搜索栏
  -->
 
  <template>
   <div class="box" >
-    <router-link to="/Positioning"><span id="city">{{cityname}} </span><span class="el-icon-arrow-down"></span></router-link>
+    <router-link to="/Positioning"><span id="city">{{nowcity.cname}} </span><span class="el-icon-arrow-down"></span></router-link>
     <input type="text" placeholder="陕西历史博物馆门票">
 	<span class="el-icon-microphone"></span>
     <router-link to="/CustService"><span class="el-icon-chat-dot-round"></span></router-link>
@@ -25,28 +25,50 @@ export default {
 		  msg:"西安",
 		  city:{},
 		  citys:[],
-		//   cityid:[]
+		  nowcity:[]
       }
   },
-//   created() {
+  created() {
 	
-// 	   axios.get('http://localhost:3000/citys'+this.id)
-//       .then(res=>{
+	//    axios.get('/day566/city1/all')
+	axios.get('/must')
+      .then(res=>{
+			//   console.log(res.data)
+			  for(let i in res.data){
+				//   console.log(res.data[i])
+				  if(res.data[i].cid==this.cityname){
+					  this.nowcity = res.data[i]
+				  }
+			  }
+		  
+			// for(let i in res.data){
+			// 	// console.log(res.data[i]);
+			// 	for(let j in res.data[i]){
+			// 		// console.log(res.data[i][j])
+			// 		for(let p in res.data[i][j]){
+			// 			// console.log(res.data[i][j][p])
+			// 			if(res.data[i][j][p].cid==this.cityname){
+			// 				this.nowcity = res.data[i][j][p];
+			// 				// console.log(this.nowcity)
+			// 				// console.log(this.nowcity.cname)
+						
 
-// 		  	console.log(res.data);
-//          	this.book = res.data;
+			// 			}
+			// 		}
+			// 	}
+			// }
 			
-//       })
-//       .catch(err=>{
-//           	console.log(err);
-//       })
-//   },
+      })
+      .catch(err=>{
+          	console.log(err);
+      })
+  },
   mounted() {
 	//   console.log(cityname);
-		if(this.$route.params.name==null){
+		if(this.$route.params.cid==null){
             return document.getElementById("city").innerHTML='西安';
         }else{
-            document.getElementById("city").innerHTML=this.cityname;
+            // document.getElementById("city").innerHTML=nowcity.cname;
         }
 
 	},
